@@ -1135,7 +1135,7 @@ mod tests {
             134, 135,
         ]
         .into_iter()
-        .for_each(|v| vote_state.process_next_vote_slot(v, 4, 0));
+        .for_each(|v| vote_state.process_next_vote_slot(v, 4, 0, true)); //[BINGO]
 
         let version1_14_11_serialized = bincode::serialize(&VoteStateVersions::V1_14_11(Box::new(
             VoteState1_14_11::from(vote_state.clone()),
