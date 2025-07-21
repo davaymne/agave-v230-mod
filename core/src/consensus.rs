@@ -69,7 +69,7 @@ impl ThresholdDecision {
 }
 
 #[cfg_attr(feature = "frozen-abi", derive(AbiExample))]
-#[derive(PartialEq, Eq, Clone, Debug, Serialize, Deserialize)] //[BINGO]
+#[derive(PartialEq, Eq, Clone, Debug)] //[BINGO]
 pub enum SwitchForkDecision {
     SwitchProof(Hash),
     SameFork,
@@ -203,7 +203,7 @@ impl TowerVersions {
 }
 
 #[cfg_attr(feature = "frozen-abi", derive(AbiExample))]
-#[derive(PartialEq, Eq, Debug, Default, Clone, Copy, Serialize, Deserialize)] //[BINGO]
+#[derive(PartialEq, Eq, Debug, Default, Clone, Copy)] //[BINGO]
 pub(crate) enum BlockhashStatus {
     /// No vote since restart
     #[default]
@@ -216,7 +216,7 @@ pub(crate) enum BlockhashStatus {
     Blockhash(Hash),
 }
 
-#[derive(Clone, Debug, PartialEq, Serialize, Deserialize)] //[BINGO]
+#[derive(Clone, Debug, PartialEq)] //[BINGO]
 pub struct Tower {
     pub node_pubkey: Pubkey,
     pub(crate) threshold_depth: usize,
@@ -239,17 +239,11 @@ pub struct Tower {
     stray_restored_slot: Option<Slot>,
     pub last_switch_threshold_check: Option<(Slot, SwitchForkDecision)>,
     //[BINGO] start
-    #[serde(skip)] //[BINGO]
     mostly_confirmed_threshold: Option<f64>,
-    #[serde(skip)] //[BINGO]
     threshold_ahead_count: Option<u8>,
-    #[serde(skip)] //[BINGO]
     after_skip_threshold: Option<u8>,
-    #[serde(skip)] //[BINGO]
     threshold_escape_count: Option<u8>,
-    #[serde(skip)] //[BINGO]
     last_config_check_seconds: u64,
-    //[BINGO] end
 }
 
 impl Default for Tower {
